@@ -1,6 +1,7 @@
-import { Entity, Index, Column, OneToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Index, Column, OneToMany, OneToOne, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { Domain, DomainBaseEntity } from '@things-factory/shell'
 import { TransportOrder } from './transport-order'
+import { ProductBatch, Lot } from '@things-factory/product-base'
 
 @Entity('transport-order-details')
 @Index(
@@ -15,8 +16,14 @@ export class TransportOrderDetail extends DomainBaseEntity {
   @ManyToOne(type => Domain)
   domain: Domain
 
-  @Column('text')
-  qty: string
+  @ManyToOne(type => ProductBatch)
+  productBatch: ProductBatch
+
+  @OneToOne(type => Lot)
+  lot: Lot
+
+  @Column('float')
+  qty: number
 
   @Column('text')
   name: string

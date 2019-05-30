@@ -31,6 +31,9 @@ export class TransportOrder extends DomainBaseEntity {
   @Column('text')
   loadType: string
 
+  @Column('text')
+  state: string
+
   @OneToMany(type => TransportOrderDetail, transportOrderDetail => transportOrderDetail.transportOrder)
   details: TransportOrderDetail[]
 

@@ -28,7 +28,7 @@ export class TransportOrderDetail extends DomainBaseEntity {
   @Column('text')
   name: string
 
-  @OneToMany(type => TransportOrder, transportOrder => transportOrder.details)
+  @ManyToOne(type => TransportOrder, transportOrder => transportOrder.details)
   transportOrder: TransportOrder
 
   @Column('text', {

@@ -1,5 +1,7 @@
-import { TransportOrderDetail } from './transport-order-detail'
+import { Filter, Pagination, Sorting } from '@things-factory/shell'
 import { NewTransportOrderDetail } from './new-transport-order-detail'
+import { TransportOrderDetail } from './transport-order-detail'
+import { TransportOrderDetailList } from './transport-order-detail-list'
 import { TransportOrderDetailPatch } from './transport-order-detail-patch'
 
 export const Mutation = `
@@ -22,8 +24,16 @@ export const Mutation = `
 `
 
 export const Query = `
-  transportOrderDetails: [TransportOrderDetail]
+  transportOrderDetails(filters: [Filter], pagination: Pagination, sortings: [Sorting]): TransportOrderDetailList
   transportOrderDetail(id: String!): TransportOrderDetail
 `
 
-export const Types = [TransportOrderDetail, NewTransportOrderDetail, TransportOrderDetailPatch]
+export const Types = [
+  Filter,
+  Pagination,
+  Sorting,
+  TransportOrderDetail,
+  NewTransportOrderDetail,
+  TransportOrderDetailPatch,
+  TransportOrderDetailList
+]

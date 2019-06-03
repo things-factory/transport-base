@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server-koa'
 
 export const TransportOrderDetailList = gql`
-  input TransportOrderDetailList {
+  type TransportOrderDetailList {
     items: [TransportOrderDetail]
     total: Int
   }

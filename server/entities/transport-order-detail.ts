@@ -1,7 +1,17 @@
-import { Entity, Index, Column, OneToMany, OneToOne, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { Domain, DomainBaseEntity } from '@things-factory/shell'
+import { User } from '@things-factory/auth-base'
+import { Lot, ProductBatch } from '@things-factory/product-base'
+import { Domain } from '@things-factory/shell'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  Index,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm'
 import { TransportOrder } from './transport-order'
-import { ProductBatch, Lot } from '@things-factory/product-base'
 
 @Entity('transport-order-details')
 @Index(
@@ -9,7 +19,7 @@ import { ProductBatch, Lot } from '@things-factory/product-base'
   (transportOrderDetail: TransportOrderDetail) => [transportOrderDetail.domain, transportOrderDetail.name],
   { unique: true }
 )
-export class TransportOrderDetail extends DomainBaseEntity {
+export class TransportOrderDetail {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
@@ -35,4 +45,20 @@ export class TransportOrderDetail extends DomainBaseEntity {
     nullable: true
   })
   description: string
+
+  @ManyToOne(type => User, {
+    nullable: true
+  })
+  creator: User
+
+  @ManyToOne(type => User, {
+    nullable: true
+  })
+  updater: User
+
+  @CreateDateColumn()
+  createdAt: Date
+
+  @UpdateDateColumn()
+  updatedAt: Date
 }

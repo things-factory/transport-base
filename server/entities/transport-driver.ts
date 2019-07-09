@@ -1,11 +1,12 @@
-import { Entity, Index, Column, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { Domain, DomainBaseEntity } from '@things-factory/shell'
+import { User } from '@things-factory/auth-base'
+import { Domain } from '@things-factory/shell'
+import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity('transport-drivers')
 @Index('ix_transport-driver_0', (transportDriver: TransportDriver) => [transportDriver.domain, transportDriver.name], {
   unique: true
 })
-export class TransportDriver extends DomainBaseEntity {
+export class TransportDriver {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
@@ -19,4 +20,20 @@ export class TransportDriver extends DomainBaseEntity {
     nullable: true
   })
   description: string
+
+  @ManyToOne(type => User, {
+    nullable: true
+  })
+  creator: User
+
+  @ManyToOne(type => User, {
+    nullable: true
+  })
+  updater: User
+
+  @CreateDateColumn()
+  createdAt: Date
+
+  @UpdateDateColumn()
+  updatedAt: Date
 }

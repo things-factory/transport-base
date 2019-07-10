@@ -2,7 +2,7 @@ import { User } from '@things-factory/auth-base'
 import { Domain } from '@things-factory/shell'
 import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
-@Entity('transport-vehicles')
+@Entity()
 @Index(
   'ix_transport-vehicle_0',
   (transportVehicle: TransportVehicle) => [transportVehicle.domain, transportVehicle.regNumber],

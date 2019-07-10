@@ -13,7 +13,7 @@ import {
 } from 'typeorm'
 import { TransportOrder } from './transport-order'
 
-@Entity('transport-order-details')
+@Entity()
 @Index(
   'ix_transport-order-detail_0',
   (transportOrderDetail: TransportOrderDetail) => [transportOrderDetail.domain, transportOrderDetail.name],

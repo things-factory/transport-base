@@ -2,7 +2,7 @@ import { User } from '@things-factory/auth-base'
 import { Domain } from '@things-factory/shell'
 import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
-@Entity('transport-drivers')
+@Entity()
 @Index('ix_transport-driver_0', (transportDriver: TransportDriver) => [transportDriver.domain, transportDriver.name], {
   unique: true
 })

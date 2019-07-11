@@ -15,25 +15,25 @@ export class TransportVehicle {
   @ManyToOne(type => Domain)
   domain: Domain
 
-  @Column('text')
+  @Column()
   regNumber: string
 
-  @Column('text')
+  @Column()
   brand: string
 
-  @Column('text')
+  @Column()
   model: string
 
-  @Column('text')
+  @Column()
   color: string
 
-  @Column('text')
+  @Column()
   size: string
 
-  @Column('text')
+  @Column()
   status: string
 
-  @Column('text', {
+  @Column({
     nullable: true
   })
   description: string

@@ -23,31 +23,31 @@ export class TransportOrder {
   @ManyToOne(type => Domain)
   domain: Domain
 
-  @Column('text')
+  @Column()
   name: string
 
-  @Column('text')
+  @Column()
   from: string
 
-  @Column('text')
+  @Column()
   to: string
 
   @Column('datetime')
   when: Date
 
-  @Column('text')
+  @Column()
   orderType: string
 
-  @Column('text')
+  @Column()
   loadType: string
 
-  @Column('text')
+  @Column()
   state: string
 
   @OneToMany(type => TransportOrderDetail, transportOrderDetail => transportOrderDetail.transportOrder)
   details: TransportOrderDetail[]
 
-  @Column('text', {
+  @Column({
     nullable: true
   })
   description: string

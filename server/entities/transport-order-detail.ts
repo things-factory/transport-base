@@ -35,13 +35,13 @@ export class TransportOrderDetail {
   @Column('float')
   qty: number
 
-  @Column('text')
+  @Column()
   name: string
 
   @ManyToOne(type => TransportOrder, transportOrder => transportOrder.details)
   transportOrder: TransportOrder
 
-  @Column('text', {
+  @Column({
     nullable: true
   })
   description: string

@@ -4,12 +4,16 @@ export const TransportVehicle = gql`
   type TransportVehicle {
     id: String
     domain: Domain
-    description: String
-    regNumber: String!
-    brand: String!
-    model: String!
-    color: String!
-    size: String!
+    regNumber: String
+    brand: String
+    model: String
+    color: String
+    size: String
     status: String
+    description: String
+    creator: User
+    updater: User
+    createdAt: String
+    updatedAt: String
   }
 `

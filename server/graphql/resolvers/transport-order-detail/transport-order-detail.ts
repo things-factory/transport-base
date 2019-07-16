@@ -2,14 +2,10 @@ import { getRepository } from 'typeorm'
 import { TransportOrderDetail } from '../../../entities'
 
 export const transportOrderDetailResolver = {
-  async transportOrderDetail(_, { id }, context, info) {
-    const repository = getRepository(TransportOrderDetail)
-
-    return await repository.findOne(
-      { id },
-      {
-        relations: ['transportOrderDetailDetails']
-      }
-    )
+  async transportOrderDetail(_: any, { name }, context: any) {
+    return await getRepository(TransportOrderDetail).findOne({
+      where: { domain: context.domain, name },
+      relations: ['domain', 'productBatch', 'transportOrder', 'creator', 'updater']
+    })
   }
 }

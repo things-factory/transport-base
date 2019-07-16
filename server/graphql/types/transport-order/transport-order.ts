@@ -3,13 +3,19 @@ import { gql } from 'apollo-server-koa'
 export const TransportOrder = gql`
   type TransportOrder {
     id: String
-    name: String
     domain: Domain
-    description: String
-    orderType: String
+    name: String
     from: String
     to: String
-    when: Date
+    when: String
+    orderType: String
     loadType: String
+    state: String
+    details: [TransportOrderDetail]
+    description: String
+    creator: User
+    updater: User
+    createdAt: String
+    updatedAt: String
   }
 `

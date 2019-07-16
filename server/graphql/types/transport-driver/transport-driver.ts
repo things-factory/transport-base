@@ -3,8 +3,12 @@ import { gql } from 'apollo-server-koa'
 export const TransportDriver = gql`
   type TransportDriver {
     id: String
-    name: String
     domain: Domain
+    name: String
     description: String
+    creator: User
+    updater: User
+    createdAt: String
+    updatedAt: String
   }
 `

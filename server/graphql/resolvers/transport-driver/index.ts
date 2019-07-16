@@ -1,9 +1,8 @@
-import { transportDriverResolver } from './transport-driver'
-import { transportDriversResolver } from './transport-drivers'
-
-import { updateTransportDriver } from './update-transport-driver'
 import { createTransportDriver } from './create-transport-driver'
 import { deleteTransportDriver } from './delete-transport-driver'
+import { transportDriverResolver } from './transport-driver'
+import { transportDriversResolver } from './transport-drivers'
+import { updateTransportDriver } from './update-transport-driver'
 
 export const Query = {
   ...transportDriversResolver,

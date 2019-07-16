@@ -2,9 +2,7 @@ import { getRepository } from 'typeorm'
 import { TransportDriver } from '../../../entities'
 
 export const deleteTransportDriver = {
-  async deleteTransportDriver(_, { id }) {
-    const repository = getRepository(TransportDriver)
-
-    return await repository.delete(id)
+  async deleteTransportDriver(_: any, { name }, context: any) {
+    return await getRepository(TransportDriver).delete({ domain: context.domain, name })
   }
 }

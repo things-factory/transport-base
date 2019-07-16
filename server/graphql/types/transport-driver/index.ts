@@ -17,10 +17,6 @@ export const Mutation = `
   deleteTransportDriver (
     id: String!
   ): TransportDriver
-
-  publishTransportDriver (
-    id: String!
-  ): TransportDriver
 `
 
 export const Query = `

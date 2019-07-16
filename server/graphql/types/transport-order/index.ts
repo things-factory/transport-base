@@ -17,10 +17,6 @@ export const Mutation = `
   deleteTransportOrder (
     id: String!
   ): TransportOrder
-
-  publishTransportOrder (
-    id: String!
-  ): TransportOrder
 `
 
 export const Query = `

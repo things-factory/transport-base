@@ -1,0 +1,14 @@
+{
+  "field.transport_order": "수송 주문",
+  "field.from": "출발지",
+  "field.to": "도착지",
+  "field.when": "시간",
+  "field.order_type": "주문 유형",
+  "field.load_type": "화물 유형",
+  "field.details": "상세",
+  "field.reg_number": "등록 번호",
+  "field.brand": "상표",
+  "field.model": "모델",
+  "field.color": "색상",
+  "field.size": "크기"
+}

@@ -1,0 +1,14 @@
+{
+  "field.transport_order": "pesanan pengangkutan",
+  "field.from": "daripada",
+  "field.to": "kepada",
+  "field.when": "bila",
+  "field.order_type": "jenis pesanan",
+  "field.load_type": "jenis load",
+  "field.details": "perincian",
+  "field.reg_number": "nombor pendaftaran",
+  "field.brand": "jenama",
+  "field.model": "model",
+  "field.color": "warna",
+  "field.size": "saiz"
+}

@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-koa'
 export const TransportVehicle = gql`
   type TransportVehicle {
     id: String
+    name: String
     domain: Domain
     regNumber: String
     brand: String

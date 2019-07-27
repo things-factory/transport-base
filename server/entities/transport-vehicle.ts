@@ -16,6 +16,9 @@ export class TransportVehicle {
   domain: Domain
 
   @Column()
+  name: string
+
+  @Column()
   regNumber: string
 
   @Column()

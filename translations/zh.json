@@ -1,0 +1,14 @@
+{
+  "field.transport_order": "运输单",
+  "field.from": "始于",
+  "field.to": "位于",
+  "field.when": "时间",
+  "field.order_type": "订单类型",
+  "field.load_type": "负载类型",
+  "field.details": "详细资料",
+  "field.reg_number": "车辆登记号",
+  "field.brand": "品牌",
+  "field.model": "型号",
+  "field.color": "颜色",
+  "field.size": "大小"
+}

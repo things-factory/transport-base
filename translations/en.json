@@ -6,7 +6,7 @@
   "field.order_type": "order type",
   "field.load_type": "load type",
   "field.details": "details",
-  "field.reg_number": "reg_number",
+  "field.reg_number": "registration number",
   "field.brand": "brand",
   "field.model": "model",
   "field.color": "color",

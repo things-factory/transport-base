@@ -10,7 +10,7 @@ export const Mutation = `
   ): TransportOrder
 
   updateTransportOrder (
-    id: String!
+    name: String!
     patch: TransportOrderPatch!
   ): TransportOrder
 

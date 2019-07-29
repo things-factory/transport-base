@@ -9,7 +9,7 @@ export const NewTransportOrder = gql`
     orderType: String!
     loadType: String!
     state: String!
-    details: [String]!
+    details: [String]
     description: String
   }
 `

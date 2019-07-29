@@ -21,7 +21,7 @@ export const Mutation = `
 
 export const Query = `
   transportOrders(filters: [Filter], pagination: Pagination, sortings: [Sorting]): TransportOrderList
-  transportOrder(id: String!): TransportOrder
+  transportOrder(name: String!): TransportOrder
 `
 
 export const Types = [

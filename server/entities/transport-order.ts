@@ -32,8 +32,8 @@ export class TransportOrder {
   @Column()
   to: string
 
-  @Column('datetime')
-  when: Date
+  @Column()
+  when: String
 
   @Column()
   orderType: string

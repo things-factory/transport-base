@@ -15,7 +15,7 @@ export const Mutation = `
   ): TransportOrder
 
   deleteTransportOrder (
-    id: String!
+    name: String!
   ): TransportOrder
 `
 

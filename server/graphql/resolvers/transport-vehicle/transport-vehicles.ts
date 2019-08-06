@@ -3,9 +3,9 @@ import { getRepository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
 
 export const transportVehiclesResolver = {
-  async transportVehicles(_: any, params: ListParam) {
+  async transportVehicles(_: any, params: ListParam, context: any) {
     const queryBuilder = getRepository(TransportVehicle).createQueryBuilder()
-    buildQuery(queryBuilder, params)
+    buildQuery(queryBuilder, params, context)
     const [items, total] = await queryBuilder
       .leftJoinAndSelect('TransportVehicle.domain', 'Domain')
       .leftJoinAndSelect('TransportVehicle.creator', 'Creator')

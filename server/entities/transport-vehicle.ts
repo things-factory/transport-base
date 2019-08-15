@@ -21,7 +21,7 @@ export class TransportVehicle {
   @Column()
   regNumber: string
 
-  @Column('comment: 1ton, 3ton, 5ton, 8ton, 10ton')
+  @Column({ comment: '1ton, 3ton, 5ton, 8ton, 10ton' })
   size: string
 
   @Column()

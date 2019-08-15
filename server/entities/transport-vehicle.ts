@@ -21,16 +21,7 @@ export class TransportVehicle {
   @Column()
   regNumber: string
 
-  @Column()
-  brand: string
-
-  @Column()
-  model: string
-
-  @Column()
-  color: string
-
-  @Column()
+  @Column('comment: 1ton, 3ton, 5ton, 8ton, 10ton')
   size: string
 
   @Column()

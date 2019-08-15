@@ -3,9 +3,13 @@ import { Domain } from '@things-factory/shell'
 import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity()
-@Index('ix_transport-driver_0', (transportDriver: TransportDriver) => [transportDriver.domain, transportDriver.name], {
-  unique: true
-})
+@Index(
+  'ix_transport-driver_0',
+  (transportDriver: TransportDriver) => [transportDriver.domain, transportDriver.driverCode],
+  {
+    unique: true
+  }
+)
 export class TransportDriver {
   @PrimaryGeneratedColumn('uuid')
   id: string
@@ -15,6 +19,9 @@ export class TransportDriver {
 
   @Column()
   name: string
+
+  @Column()
+  driverCode: string
 
   @Column({
     nullable: true

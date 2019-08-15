@@ -6,6 +6,7 @@ export const TransportDriver = gql`
     domain: Domain
     name: String
     description: String
+    driverCode: String
     creator: User
     updater: User
     createdAt: String

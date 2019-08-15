@@ -2,9 +2,9 @@ import { getRepository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
 
 export const transportVehicleResolver = {
-  async transportVehicle(_: any, { id }, context: any) {
+  async transportVehicle(_: any, { regNumber }, context: any) {
     return await getRepository(TransportVehicle).findOne({
-      where: { domain: context.domain, id },
+      where: { domain: context.domain, regNumber },
       relations: ['domain', 'creator', 'updater']
     })
   }

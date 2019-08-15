@@ -6,9 +6,6 @@ export const TransportVehicle = gql`
     name: String
     domain: Domain
     regNumber: String
-    brand: String
-    model: String
-    color: String
     size: String
     status: String
     description: String

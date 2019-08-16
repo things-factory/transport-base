@@ -7,5 +7,6 @@ export const TransportVehiclePatch = gql`
     size: String
     status: String
     description: String
+    cuFlag: String
   }
 `

@@ -14,6 +14,10 @@ export const Mutation = `
     patch: TransportVehiclePatch!
   ): TransportVehicle
 
+  updateMultipleTransportVehicle (
+    patches: [TransportVehiclePatch]!
+  ): [TransportVehicle]
+
   deleteTransportVehicle (
     name: String!
   ): TransportVehicle

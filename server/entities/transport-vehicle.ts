@@ -5,7 +5,7 @@ import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedCol
 @Entity()
 @Index(
   'ix_transport-vehicle_0',
-  (transportVehicle: TransportVehicle) => [transportVehicle.domain, transportVehicle.regNumber],
+  (transportVehicle: TransportVehicle) => [transportVehicle.domain, transportVehicle.name],
   { unique: true }
 )
 export class TransportVehicle {

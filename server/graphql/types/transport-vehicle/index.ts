@@ -10,12 +10,12 @@ export const Mutation = `
   ): TransportVehicle
 
   updateTransportVehicle (
-    id: String!
+    name: String!
     patch: TransportVehiclePatch!
   ): TransportVehicle
 
   deleteTransportVehicle (
-    id: String!
+    name: String!
   ): TransportVehicle
 `
 

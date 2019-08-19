@@ -1,8 +1,8 @@
 import { getRepository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
 
-export const updateMultipleContactPoint = {
-  async updateMultipleContactPoint(_: any, { patches }, context: any) {
+export const updateMultipleTransportVehicle = {
+  async updateMultipleTransportVehicle(_: any, { patches }, context: any) {
     const results = []
     const _createRecords = patches
       .filter((patch: any) => patch.cuFlag === '+')

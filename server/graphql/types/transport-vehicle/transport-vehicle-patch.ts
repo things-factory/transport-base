@@ -8,5 +8,7 @@ export const TransportVehiclePatch = gql`
     status: String
     description: String
     cuFlag: String
+    updatedAt: String
+    updater: String
   }
 `

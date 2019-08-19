@@ -5,5 +5,7 @@ export const TransportDriverPatch = gql`
     name: String
     description: String
     driverCode: String
+    updatedAt: String
+    updater: String
   }
 `

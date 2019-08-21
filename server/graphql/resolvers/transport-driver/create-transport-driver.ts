@@ -5,8 +5,8 @@ export const createTransportDriver = {
   async createTransportDriver(_: any, { transportDriver }, context: any) {
     return await getRepository(TransportDriver).save({
       domain: context.domain,
-      creatorId: context.state.user.id,
-      updaterId: context.state.user.id,
+      creator: context.state.user,
+      updater: context.state.user,
       ...transportDriver
     })
   }

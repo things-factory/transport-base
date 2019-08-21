@@ -9,7 +9,7 @@ export const updateTransportDriver = {
     return await repository.save({
       ...transportDriver,
       ...patch,
-      updaterId: context.state.user.id
+      updater: context.state.user
     })
   }
 }

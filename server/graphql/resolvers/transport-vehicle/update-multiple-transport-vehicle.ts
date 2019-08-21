@@ -24,8 +24,8 @@ export const updateMultipleTransportVehicle = {
         _createRecords.map((patch: any) => {
           return {
             domain: context.domain,
-            creatorId: context.state.user.id,
-            updaterId: context.state.user.id,
+            creator: context.state.user,
+            updater: context.state.user,
             ...patch
           }
         })
@@ -42,7 +42,7 @@ export const updateMultipleTransportVehicle = {
           return {
             ...transportVehicle,
             ...patch,
-            updaterId: context.state.user.id
+            updater: context.state.user
           }
         })
       )

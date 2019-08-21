@@ -9,7 +9,7 @@ export const updateTransportVehicle = {
     return await repository.save({
       ...transportVehicle,
       ...patch,
-      updaterId: context.state.user.id
+      updater: context.state.user
     })
   }
 }

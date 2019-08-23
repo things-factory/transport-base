@@ -1,8 +1,9 @@
 import { User } from '@things-factory/auth-base'
+import { Bizplace } from '@things-factory/biz-base'
 import { Domain } from '@things-factory/shell'
 import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
-@Entity()
+@Entity('transport_vehicles')
 @Index(
   'ix_transport-vehicle_0',
   (transportVehicle: TransportVehicle) => [transportVehicle.domain, transportVehicle.name],
@@ -14,6 +15,9 @@ export class TransportVehicle {
 
   @ManyToOne(type => Domain)
   domain: Domain
+
+  @ManyToOne(type => Bizplace)
+  bizplace: Bizplace
 
   @Column()
   name: string

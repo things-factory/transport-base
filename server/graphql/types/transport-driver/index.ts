@@ -1,4 +1,3 @@
-import { Filter, Pagination, Sorting } from '@things-factory/shell'
 import { NewTransportDriver } from './new-transport-driver'
 import { TransportDriver } from './transport-driver'
 import { TransportDriverList } from './transport-driver-list'
@@ -10,26 +9,27 @@ export const Mutation = `
   ): TransportDriver
 
   updateTransportDriver (
-    id: String!
+    name: String!
     patch: TransportDriverPatch!
-  ): TransportDriver
+  ): [TransportDriver]
 
   deleteTransportDriver (
-    id: String!
+    name: String!
   ): TransportDriver
+  
+  deleteTransportDrivers (
+    names: [String]!
+  ): Boolean
+
+  updateMultipleTransportDriver (
+    patches: [TransportDriverPatch]!
+  ): [TransportDriver]
+
 `
 
 export const Query = `
   transportDrivers(filters: [Filter], pagination: Pagination, sortings: [Sorting]): TransportDriverList
-  transportDriver(id: String!): TransportDriver
+  transportDriver(name: String!): TransportDriver
 `
 
-export const Types = [
-  Filter,
-  Pagination,
-  Sorting,
-  TransportDriver,
-  NewTransportDriver,
-  TransportDriverPatch,
-  TransportDriverList
-]
+export const Types = [TransportDriver, NewTransportDriver, TransportDriverPatch, TransportDriverList]

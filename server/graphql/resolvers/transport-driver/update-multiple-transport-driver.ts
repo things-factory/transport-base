@@ -1,13 +1,13 @@
 import { Bizplace } from '@things-factory/biz-base'
 import { getRepository } from 'typeorm'
-import { TransportVehicle } from '../../../entities'
+import { TransportDriver } from '../../../entities'
 
-export const updateMultipleTransportVehicle = {
-  async updateMultipleTransportVehicle(_: any, { patches }, context: any) {
+export const updateMultipleTransportDriver = {
+  async updateMultipleTransportDriver(_: any, { patches }, context: any) {
     let results = []
     const _createRecords = patches.filter((patch: any) => patch.cuFlag === '+')
     const _updateRecords = patches.filter((patch: any) => patch.cuFlag.toUpperCase() === 'M')
-    const transportVehicleRepo = getRepository(TransportVehicle)
+    const transportDriverRepo = getRepository(TransportDriver)
     const bizplaceRepo = getRepository(Bizplace)
 
     if (_createRecords.length > 0) {
@@ -18,7 +18,7 @@ export const updateMultipleTransportVehicle = {
           newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
         }
 
-        const result = await transportVehicleRepo.save({
+        const result = await transportDriverRepo.save({
           domain: context.domain,
           creator: context.state.user,
           updater: context.state.user,
@@ -32,14 +32,14 @@ export const updateMultipleTransportVehicle = {
     if (_updateRecords.length > 0) {
       for (let i = 0; i < _updateRecords.length; i++) {
         const newRecord = _updateRecords[i]
-        const transportVehicle = await transportVehicleRepo.findOne({ id: newRecord.id })
+        const transportDriver = await transportDriverRepo.findOne({ id: newRecord.id })
 
         if (newRecord.bizplace && newRecord.bizplace.id) {
           newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
         }
 
-        const result = await transportVehicleRepo.save({
-          ...transportVehicle,
+        const result = await transportDriverRepo.save({
+          ...transportDriver,
           ...newRecord,
           updater: context.state.user
         })

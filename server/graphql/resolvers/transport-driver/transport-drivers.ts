@@ -8,6 +8,7 @@ export const transportDriversResolver = {
     buildQuery(queryBuilder, params, context)
     const [items, total] = await queryBuilder
       .leftJoinAndSelect('TransportDriver.domain', 'Domain')
+      .leftJoinAndSelect('TransportDriver.bizplace', 'Bizplace')
       .leftJoinAndSelect('TransportDriver.creator', 'Creator')
       .leftJoinAndSelect('TransportDriver.updater', 'Updater')
       .getManyAndCount()

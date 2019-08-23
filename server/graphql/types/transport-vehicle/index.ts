@@ -1,4 +1,3 @@
-import { Filter, Pagination, Sorting } from '@things-factory/shell'
 import { NewTransportVehicle } from './new-transport-vehicle'
 import { TransportVehicle } from './transport-vehicle'
 import { TransportVehicleList } from './transport-vehicle-list'
@@ -12,7 +11,7 @@ export const Mutation = `
   updateTransportVehicle (
     name: String!
     patch: TransportVehiclePatch!
-  ): TransportVehicle
+  ): [TransportVehicle]
 
   updateMultipleTransportVehicle (
     patches: [TransportVehiclePatch]!
@@ -21,19 +20,15 @@ export const Mutation = `
   deleteTransportVehicle (
     name: String!
   ): TransportVehicle
+
+  deleteTransportVehicles (
+    names: [String]!
+  ): Boolean
 `
 
 export const Query = `
   transportVehicles(filters: [Filter], pagination: Pagination, sortings: [Sorting]): TransportVehicleList
-  transportVehicle(id: String!): TransportVehicle
+  transportVehicle(name: String!): TransportVehicle
 `
 
-export const Types = [
-  Filter,
-  Pagination,
-  Sorting,
-  TransportVehicle,
-  NewTransportVehicle,
-  TransportVehiclePatch,
-  TransportVehicleList
-]
+export const Types = [TransportVehicle, NewTransportVehicle, TransportVehiclePatch, TransportVehicleList]

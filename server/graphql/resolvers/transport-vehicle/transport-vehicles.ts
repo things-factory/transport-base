@@ -8,6 +8,7 @@ export const transportVehiclesResolver = {
     buildQuery(queryBuilder, params, context)
     const [items, total] = await queryBuilder
       .leftJoinAndSelect('TransportVehicle.domain', 'Domain')
+      .leftJoinAndSelect('TransportVehicle.bizplace', 'Bizplace')
       .leftJoinAndSelect('TransportVehicle.creator', 'Creator')
       .leftJoinAndSelect('TransportVehicle.updater', 'Updater')
       .getManyAndCount()

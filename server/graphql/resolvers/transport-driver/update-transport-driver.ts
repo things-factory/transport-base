@@ -1,12 +1,18 @@
+import { Bizplace } from '@things-factory/biz-base'
 import { getRepository } from 'typeorm'
 import { TransportDriver } from '../../../entities'
 
 export const updateTransportDriver = {
-  async updateTransportDriver(_: any, { driverCode, patch }, context: any) {
-    const repository = getRepository(TransportDriver)
-    const transportDriver = await repository.findOne({ where: { domain: context.domain, driverCode } })
+  async updateTransportDriver(_: any, { name, patch }, context: any) {
+    const transportDriver = await getRepository(TransportDriver).findOne({
+      where: { domain: context.domain, name }
+    })
 
-    return await repository.save({
+    if (patch.bizplace && patch.bizplace.id) {
+      patch.bizplace = await getRepository(Bizplace).findOne(patch.bizplace.id)
+    }
+
+    return await getRepository(TransportDriver).save({
       ...transportDriver,
       ...patch,
       updater: context.state.user

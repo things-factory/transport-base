@@ -1,11 +1,11 @@
-import { Bizplace } from '@things-factory/biz-base'
 import { getRepository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
+import { Bizplace } from '@things-factory/biz-base'
 
 export const updateMultipleTransportVehicle = {
   async updateMultipleTransportVehicle(_: any, { patches }, context: any) {
     let results = []
-    const _createRecords = patches.filter((patch: any) => patch.cuFlag === '+')
+    const _createRecords = patches.filter((patch: any) => patch.cuFlag.toUpperCase() === '+')
     const _updateRecords = patches.filter((patch: any) => patch.cuFlag.toUpperCase() === 'M')
     const transportVehicleRepo = getRepository(TransportVehicle)
     const bizplaceRepo = getRepository(Bizplace)
@@ -32,7 +32,7 @@ export const updateMultipleTransportVehicle = {
     if (_updateRecords.length > 0) {
       for (let i = 0; i < _updateRecords.length; i++) {
         const newRecord = _updateRecords[i]
-        const transportVehicle = await transportVehicleRepo.findOne({ id: newRecord.id })
+        const transportVehicle = await transportVehicleRepo.findOne(newRecord.id)
 
         if (newRecord.bizplace && newRecord.bizplace.id) {
           newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
@@ -41,7 +41,6 @@ export const updateMultipleTransportVehicle = {
         const result = await transportVehicleRepo.save({
           ...transportVehicle,
           ...newRecord,
-          domain: context.domain,
           updater: context.state.user
         })
 

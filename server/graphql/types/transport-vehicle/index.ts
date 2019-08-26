@@ -19,7 +19,7 @@ export const Mutation = `
 
   deleteTransportVehicle (
     name: String!
-  ): TransportVehicle
+  ): Boolean
 
   deleteTransportVehicles (
     names: [String]!

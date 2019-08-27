@@ -6,30 +6,30 @@ import { TransportDriverPatch } from './transport-driver-patch'
 export const Mutation = `
   createTransportDriver (
     transportDriver: NewTransportDriver!
-  ): TransportDriver
+  ): TransportDriver @priviledge(category: "transport", priviledge: "mutation")
 
   updateTransportDriver (
     name: String!
     patch: TransportDriverPatch!
-  ): [TransportDriver]
+  ): [TransportDriver] @priviledge(category: "transport", priviledge: "mutation")
 
   deleteTransportDriver (
     name: String!
-  ): TransportDriver
+  ): Boolean @priviledge(category: "transport", priviledge: "mutation")
   
   deleteTransportDrivers (
     names: [String]!
-  ): Boolean
+  ): Boolean @priviledge(category: "transport", priviledge: "mutation")
 
   updateMultipleTransportDriver (
     patches: [TransportDriverPatch]!
-  ): [TransportDriver]
+  ): [TransportDriver] @priviledge(category: "transport", priviledge: "mutation")
 
 `
 
 export const Query = `
-  transportDrivers(filters: [Filter], pagination: Pagination, sortings: [Sorting]): TransportDriverList
-  transportDriver(name: String!): TransportDriver
+  transportDrivers(filters: [Filter], pagination: Pagination, sortings: [Sorting]): TransportDriverList @priviledge(category: "transport", priviledge: "query")
+  transportDriver(name: String!): TransportDriver @priviledge(category: "transport", priviledge: "query")
 `
 
 export const Types = [TransportDriver, NewTransportDriver, TransportDriverPatch, TransportDriverList]

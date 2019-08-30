@@ -13,10 +13,14 @@ export class TransportVehicle {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @ManyToOne(type => Domain)
+  @ManyToOne(type => Domain, {
+    nullable: false
+  })
   domain: Domain
 
-  @ManyToOne(type => Bizplace)
+  @ManyToOne(type => Bizplace, {
+    nullable: false
+  })
   bizplace: Bizplace
 
   @Column()

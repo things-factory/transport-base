@@ -1,10 +1,11 @@
-import { getRepository } from 'typeorm'
+import { getUserBizplaces } from '@things-factory/biz-base'
+import { getRepository, In } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
 
 export const transportVehicleResolver = {
   async transportVehicle(_: any, { name }, context: any) {
     return await getRepository(TransportVehicle).findOne({
-      where: { domain: context.domain, name, bizplace: context.bizplace },
+      where: { domain: context.domain, name, bizplace: In(await getUserBizplaces(context)) },
       relations: ['domain', 'bizplace', 'creator', 'updater']
     })
   }

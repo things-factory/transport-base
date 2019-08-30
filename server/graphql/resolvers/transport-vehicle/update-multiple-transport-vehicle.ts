@@ -1,6 +1,6 @@
 import { getRepository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
-import { Bizplace } from '@things-factory/biz-base'
+import { Bizplace, getUserBizplaces } from '@things-factory/biz-base'
 
 export const updateMultipleTransportVehicle = {
   async updateMultipleTransportVehicle(_: any, { patches }, context: any) {
@@ -16,6 +16,9 @@ export const updateMultipleTransportVehicle = {
 
         if (newRecord.bizplace && newRecord.bizplace.id) {
           newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
+        } else {
+          const userBizplaces = await getUserBizplaces(context)
+          newRecord.bizplace = userBizplaces[0]
         }
 
         const result = await transportVehicleRepo.save({

@@ -1,17 +1,17 @@
-import { buildQuery, ListParam } from '@things-factory/shell'
-import { getRepository } from 'typeorm'
+import { getUserBizplaces } from '@things-factory/biz-base'
+import { convertListParams, ListParam } from '@things-factory/shell'
+import { getRepository, In } from 'typeorm'
 import { TransportDriver } from '../../../entities'
 
 export const transportDriversResolver = {
   async transportDrivers(_: any, params: ListParam, context: any) {
-    const queryBuilder = getRepository(TransportDriver).createQueryBuilder()
-    buildQuery(queryBuilder, params, context)
-    const [items, total] = await queryBuilder
-      .leftJoinAndSelect('TransportDriver.domain', 'Domain')
-      .leftJoinAndSelect('TransportDriver.bizplace', 'Bizplace')
-      .leftJoinAndSelect('TransportDriver.creator', 'Creator')
-      .leftJoinAndSelect('TransportDriver.updater', 'Updater')
-      .getManyAndCount()
+    const convertedParams = convertListParams(params)
+    const userBizplaces = await getUserBizplaces(context)
+    convertedParams.where.bizplace = In(userBizplaces.map(userBizplace => userBizplace.id))
+    const [items, total] = await getRepository(TransportDriver).findAndCount({
+      ...convertedParams,
+      relations: ['domain', 'bizplace', 'creator', 'updater']
+    })
 
     return { items, total }
   }

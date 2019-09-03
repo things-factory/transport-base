@@ -5,7 +5,7 @@ import { TransportVehicle } from '../../../entities'
 export const transportVehicleResolver = {
   async transportVehicle(_: any, { name }, context: any) {
     return await getRepository(TransportVehicle).findOne({
-      where: { domain: context.domain, name, bizplace: In(await getUserBizplaces(context)) },
+      where: { domain: context.state.domain, name, bizplace: In(await getUserBizplaces(context)) },
       relations: ['domain', 'bizplace', 'creator', 'updater']
     })
   }

@@ -22,7 +22,7 @@ export const updateMultipleTransportVehicle = {
         }
 
         const result = await transportVehicleRepo.save({
-          domain: context.domain,
+          domain: context.state.domain,
           bizplace: context.bizplace,
           creator: context.state.user,
           updater: context.state.user,

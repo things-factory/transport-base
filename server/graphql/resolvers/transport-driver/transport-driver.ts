@@ -5,7 +5,7 @@ import { TransportDriver } from '../../../entities'
 export const transportDriverResolver = {
   async transportDriver(_: any, { driverCode }, context: any) {
     return await getRepository(TransportDriver).findOne({
-      where: { domain: context.domain, driverCode, bizplace: In(await getUserBizplaces(context)) },
+      where: { domain: context.state.domain, driverCode, bizplace: In(await getUserBizplaces(context)) },
       relations: ['domain', 'bizplace', 'creator', 'updater']
     })
   }

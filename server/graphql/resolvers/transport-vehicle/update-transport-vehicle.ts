@@ -5,7 +5,7 @@ import { TransportVehicle } from '../../../entities'
 export const updateTransportVehicle = {
   async updateTransportVehicle(_: any, { name, patch }, context: any) {
     const transportVehicle = await getRepository(TransportVehicle).findOne({
-      where: { domain: context.domain, name, bizplace: context.bizplace }
+      where: { domain: context.state.domain, name, bizplace: context.bizplace }
     })
 
     if (patch.bizplace && patch.bizplace.id) {

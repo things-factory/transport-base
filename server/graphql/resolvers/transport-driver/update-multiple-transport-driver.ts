@@ -22,7 +22,7 @@ export const updateMultipleTransportDriver = {
         }
 
         const result = await transportDriverRepo.save({
-          domain: context.domain,
+          domain: context.state.domain,
           creator: context.state.user,
           updater: context.state.user,
           ...newRecord

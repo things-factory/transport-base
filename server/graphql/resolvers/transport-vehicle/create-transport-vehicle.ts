@@ -13,7 +13,7 @@ export const createTransportVehicle = {
 
     return await getRepository(TransportVehicle).save({
       ...transportVehicle,
-      domain: context.domain,
+      domain: context.state.domain,
       creator: context.state.user,
       updater: context.state.user
     })

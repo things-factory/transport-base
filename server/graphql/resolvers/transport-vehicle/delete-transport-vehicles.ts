@@ -4,7 +4,7 @@ import { TransportVehicle } from '../../../entities'
 export const deleteTransportVehicles = {
   async deleteTransportVehicles(_: any, { names }, context: any) {
     await getRepository(TransportVehicle).delete({
-      domain: context.domain,
+      domain: context.state.domain,
       name: In(names)
     })
 

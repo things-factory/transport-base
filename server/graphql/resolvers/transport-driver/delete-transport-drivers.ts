@@ -4,7 +4,7 @@ import { TransportDriver } from '../../../entities'
 export const deleteTransportDrivers = {
   async deleteTransportDrivers(_: any, { names }, context: any) {
     await getRepository(TransportDriver).delete({
-      domain: context.domain,
+      domain: context.state.domain,
       name: In(names)
     })
 

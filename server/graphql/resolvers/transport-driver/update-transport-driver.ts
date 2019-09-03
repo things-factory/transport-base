@@ -5,7 +5,7 @@ import { TransportDriver } from '../../../entities'
 export const updateTransportDriver = {
   async updateTransportDriver(_: any, { name, patch }, context: any) {
     const transportDriver = await getRepository(TransportDriver).findOne({
-      where: { domain: context.domain, name }
+      where: { domain: context.state.domain, name }
     })
 
     if (patch.bizplace && patch.bizplace.id) {

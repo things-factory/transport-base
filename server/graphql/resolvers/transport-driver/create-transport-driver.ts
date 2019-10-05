@@ -7,7 +7,7 @@ export const createTransportDriver = {
     if (transportDriver.bizplace && transportDriver.bizplace.id) {
       transportDriver.bizplace = await getRepository(Bizplace).findOne(transportDriver.bizplace.id)
     } else {
-      transportDriver.bizplace = context.stats.bizplaces[0]
+      transportDriver.bizplace = context.state.mainBizplace
     }
 
     return await getRepository(TransportDriver).save({

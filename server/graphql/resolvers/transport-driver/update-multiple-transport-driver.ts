@@ -17,7 +17,7 @@ export const updateMultipleTransportDriver = {
         if (newRecord.bizplace && newRecord.bizplace.id) {
           newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
         } else {
-          newRecord.bizplace = context.stats.bizplaces[0]
+          newRecord.bizplace = context.state.mainBizplace
         }
 
         const result = await transportDriverRepo.save({

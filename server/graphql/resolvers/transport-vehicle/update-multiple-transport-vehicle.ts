@@ -17,12 +17,12 @@ export const updateMultipleTransportVehicle = {
         if (newRecord.bizplace && newRecord.bizplace.id) {
           newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
         } else {
-          newRecord.bizplace = context.stats.bizplaces[0]
+          newRecord.bizplace = context.state.mainBizplace
         }
 
         const result = await transportVehicleRepo.save({
           domain: context.state.domain,
-          bizplace: context.bizplace,
+          bizplace: context.state.bizplace,
           creator: context.state.user,
           updater: context.state.user,
           ...newRecord

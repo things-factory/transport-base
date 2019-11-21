@@ -1,4 +1,4 @@
-import { Bizplace } from '@things-factory/biz-base'
+import { Bizplace, getMyBizplace } from '@things-factory/biz-base'
 import { getRepository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
 
@@ -17,7 +17,7 @@ export const updateMultipleTransportVehicle = {
         if (newRecord.bizplace && newRecord.bizplace.id) {
           newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
         } else {
-          newRecord.bizplace = context.state.mainBizplace
+          newRecord.bizplace = await getMyBizplace(context.state.user)
         }
 
         const result = await transportVehicleRepo.save({

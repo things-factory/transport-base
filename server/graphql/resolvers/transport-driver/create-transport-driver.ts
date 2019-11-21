@@ -1,4 +1,4 @@
-import { Bizplace } from '@things-factory/biz-base'
+import { Bizplace, getMyBizplace } from '@things-factory/biz-base'
 import { getRepository } from 'typeorm'
 import { TransportDriver } from '../../../entities'
 
@@ -7,7 +7,7 @@ export const createTransportDriver = {
     if (transportDriver.bizplace && transportDriver.bizplace.id) {
       transportDriver.bizplace = await getRepository(Bizplace).findOne(transportDriver.bizplace.id)
     } else {
-      transportDriver.bizplace = context.state.mainBizplace
+      transportDriver.bizplace = await getMyBizplace(context.state.user)
     }
 
     return await getRepository(TransportDriver).save({

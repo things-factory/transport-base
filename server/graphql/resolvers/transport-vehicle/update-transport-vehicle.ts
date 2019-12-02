@@ -1,21 +1,22 @@
-import { Bizplace } from '@things-factory/biz-base'
-import { getRepository } from 'typeorm'
+import { User } from '@things-factory/auth-base'
+import { EntityManager, getRepository, Repository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
 
-export const updateTransportVehicle = {
-  async updateTransportVehicle(_: any, { name, patch }, context: any) {
-    const transportVehicle = await getRepository(TransportVehicle).findOne({
-      where: { domain: context.state.domain, name, bizplace: context.bizplace }
-    })
-
-    if (patch.bizplace && patch.bizplace.id) {
-      patch.bizplace = await getRepository(Bizplace).findOne(patch.bizplace.id)
-    }
-
-    return await getRepository(TransportVehicle).save({
-      ...transportVehicle,
-      ...patch,
-      updater: context.state.user
-    })
+export const updateTransportVehicleResolver = {
+  async updateTransportVehicle(_: any, { id, patch }, context: any) {
+    return await updateTransportVehicle(id, patch, context.state.user)
   }
+}
+
+export async function updateTransportVehicle(id: string, patch: TransportVehicle, user: User, trxMgr?: EntityManager) {
+  const repository: Repository<TransportVehicle> = trxMgr
+    ? trxMgr.getRepository(TransportVehicle)
+    : getRepository(TransportVehicle)
+  const transportVehicle = await repository.findOne(id)
+
+  return await repository.save({
+    ...transportVehicle,
+    ...patch,
+    updater: user
+  })
 }

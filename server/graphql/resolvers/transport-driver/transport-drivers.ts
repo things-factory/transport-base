@@ -7,11 +7,11 @@ export const transportDriversResolver = {
   async transportDrivers(_: any, params: ListParam, context: any) {
     const convertedParams = convertListParams(params)
     convertedParams.where.bizplace = In(await getPermittedBizplaceIds(context.state.domain, context.state.user))
+
     const [items, total] = await getRepository(TransportDriver).findAndCount({
       ...convertedParams,
-      relations: ['domain', 'bizplace', 'creator', 'updater']
+      relations: ['domain', 'creator', 'updater']
     })
-
     return { items, total }
   }
 }

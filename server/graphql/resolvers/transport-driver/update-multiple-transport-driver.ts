@@ -1,55 +1,32 @@
-import { Bizplace, getMyBizplace } from '@things-factory/biz-base'
-import { getRepository } from 'typeorm'
+import { EntityManager, getManager } from 'typeorm'
 import { TransportDriver } from '../../../entities'
+import { createTransportDriver } from './create-transport-driver'
+import { updateTransportDriver } from './update-transport-driver'
 
 export const updateMultipleTransportDriver = {
-  async updateMultipleTransportDriver(_: any, { patches }, context: any) {
-    let results = []
-    const _createRecords = patches.filter((patch: any) => patch.cuFlag === '+')
-    const _updateRecords = patches.filter((patch: any) => patch.cuFlag.toUpperCase() === 'M')
-    const transportDriverRepo = getRepository(TransportDriver)
-    const bizplaceRepo = getRepository(Bizplace)
+  async updateMultipleTransportDriver(_: any, { patches }, context: any): Promise<any> {
+    return await getManager().transaction(async (trxMgr: EntityManager) => {
+      let results = []
+      const _createRecords = patches.filter((patch: any) => patch.cuFlag === '+')
+      const _updateRecords = patches.filter((patch: any) => patch.cuFlag.toUpperCase() === 'M')
 
-    if (_createRecords.length > 0) {
-      for (let i = 0; i < _createRecords.length; i++) {
-        const newRecord = _createRecords[i]
-
-        if (newRecord.bizplace && newRecord.bizplace.id) {
-          newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
-        } else {
-          newRecord.bizplace = await getMyBizplace(context.state.user)
+      if (_createRecords.length > 0) {
+        for (let i = 0; i < _createRecords.length; i++) {
+          const patch: TransportDriver = _createRecords[i]
+          const result = await createTransportDriver(patch, context.state.domain, context.state.user, trxMgr)
+          results.push({ ...result, cuFlag: '+' })
         }
-
-        const result = await transportDriverRepo.save({
-          domain: context.state.domain,
-          creator: context.state.user,
-          updater: context.state.user,
-          ...newRecord
-        })
-
-        results.push({ ...result, cuFlag: '+' })
       }
-    }
 
-    if (_updateRecords.length > 0) {
-      for (let i = 0; i < _updateRecords.length; i++) {
-        const newRecord = _updateRecords[i]
-        const transportDriver = await transportDriverRepo.findOne({ id: newRecord.id })
-
-        if (newRecord.bizplace && newRecord.bizplace.id) {
-          newRecord.bizplace = await bizplaceRepo.findOne(newRecord.bizplace.id)
+      if (_updateRecords.length > 0) {
+        for (let i = 0; i < _updateRecords.length; i++) {
+          const patch: TransportDriver = _updateRecords[i]
+          const result = await updateTransportDriver(patch.id, patch, context.state.user)
+          results.push({ ...result, cuFlag: 'M' })
         }
-
-        const result = await transportDriverRepo.save({
-          ...transportDriver,
-          ...newRecord,
-          updater: context.state.user
-        })
-
-        results.push({ ...result, cuFlag: 'M' })
       }
-    }
 
-    return results
+      return results
+    })
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@things-factory/transport-base",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
@@ -23,7 +23,6 @@
     "migration:revert": "node ./node_modules/typeorm/cli.js migration:revert"
   },
   "dependencies": {
-    "@things-factory/auth-base": "^1.0.0-alpha.1",
     "@things-factory/biz-base": "^1.0.0-alpha.1",
     "@things-factory/shell": "^1.0.0-alpha.1"
   },

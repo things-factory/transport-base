@@ -10,7 +10,7 @@ export const transportDriverResolver = {
         driverCode,
         bizplace: In(await getPermittedBizplaceIds(context.state.domain, context.state.user))
       },
-      relations: ['domain', 'bizplace', 'creator', 'updater']
+      relations: ['domain', 'creator', 'updater']
     })
   }
 }

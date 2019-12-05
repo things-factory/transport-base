@@ -1,5 +1,4 @@
-import { getPermittedBizplaceIds } from '@things-factory/biz-base'
-import { getRepository, In } from 'typeorm'
+import { getRepository } from 'typeorm'
 import { TransportDriver } from '../../../entities'
 
 export const transportDriverResolver = {
@@ -7,8 +6,7 @@ export const transportDriverResolver = {
     return await getRepository(TransportDriver).findOne({
       where: {
         domain: context.state.domain,
-        driverCode,
-        bizplace: In(await getPermittedBizplaceIds(context.state.domain, context.state.user))
+        driverCode
       },
       relations: ['domain', 'creator', 'updater']
     })

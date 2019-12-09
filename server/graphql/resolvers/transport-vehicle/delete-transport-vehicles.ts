@@ -3,7 +3,7 @@ import { TransportVehicle } from '../../../entities'
 
 export const deleteTransportVehiclesResolver = {
   async deleteTransportVehicles(_: any, { ids }) {
-    return await deleteTransportVehicles(ids)
+    await deleteTransportVehicles(ids)
   }
 }
 
@@ -11,5 +11,6 @@ export async function deleteTransportVehicles(ids: string[], trxMgr?: EntityMana
   const repository: Repository<TransportVehicle> = trxMgr
     ? trxMgr.getRepository(TransportVehicle)
     : getRepository(TransportVehicle)
-  return await repository.delete(ids)
+  await repository.delete(ids)
+  return true
 }

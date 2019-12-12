@@ -4,7 +4,7 @@ import { TransportDriver } from '../../../entities'
 
 export const transportDriversResolver = {
   async transportDrivers(_: any, params: ListParam, context: any) {
-    const convertedParams = convertListParams(params)
+    const convertedParams = convertListParams(params, context.state.domain.id)
     const [items, total] = await getRepository(TransportDriver).findAndCount({
       ...convertedParams,
       relations: ['domain', 'creator', 'updater']

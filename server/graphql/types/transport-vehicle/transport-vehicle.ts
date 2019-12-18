@@ -9,6 +9,7 @@ export const TransportVehicle = gql`
     size: String
     status: String
     description: String
+    bizplace: Bizplace
     creator: User
     updater: User
     createdAt: String

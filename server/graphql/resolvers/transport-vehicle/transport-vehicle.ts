@@ -10,7 +10,7 @@ export const transportVehicleResolver = {
         name,
         bizplace: In(await getPermittedBizplaceIds(context.state.domain, context.state.user))
       },
-      relations: ['domain', 'creator', 'updater']
+      relations: ['bizplace', 'domain', 'creator', 'updater']
     })
   }
 }

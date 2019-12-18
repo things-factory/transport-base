@@ -8,7 +8,7 @@ export const transportDriverResolver = {
         domain: context.state.domain,
         driverCode
       },
-      relations: ['domain', 'creator', 'updater']
+      relations: ['bizplace', 'domain', 'creator', 'updater']
     })
   }
 }

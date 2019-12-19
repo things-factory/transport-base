@@ -8,7 +8,6 @@ export const TransportDriver = gql`
     name: String
     description: String
     driverCode: String
-    bizplace: Bizplace
     creator: User
     updater: User
     createdAt: String

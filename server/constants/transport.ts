@@ -5,5 +5,6 @@ export const DRIVER_STATUS = {
 
 export const TRUCK_STATUS = {
   AVAILABLE: 'AVAILABLE',
-  IN_USE: 'IN_USE'
+  IN_USE: 'IN_USE',
+  ASSIGNED: 'ASSIGNED'
 }

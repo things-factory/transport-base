@@ -1,9 +1,8 @@
-import { gql } from 'apollo-server-koa'
+import gql from 'graphql-tag'
 
 export const TransportVehiclePatch = gql`
   input TransportVehiclePatch {
     id: String
-    bizplace: ObjectRef
     name: String
     regNumber: String
     size: String

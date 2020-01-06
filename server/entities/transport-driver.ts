@@ -1,6 +1,6 @@
 import { User } from '@things-factory/auth-base'
-import { Domain } from '@things-factory/shell'
 import { Bizplace } from '@things-factory/biz-base'
+import { Domain } from '@things-factory/shell'
 import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity('transport_drivers')

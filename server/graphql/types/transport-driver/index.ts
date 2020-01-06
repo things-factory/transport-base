@@ -9,16 +9,16 @@ export const Mutation = `
   ): TransportDriver @priviledge(category: "transport", priviledge: "mutation")
 
   updateTransportDriver (
-    name: String!
+    id: String!
     patch: TransportDriverPatch!
   ): [TransportDriver] @priviledge(category: "transport", priviledge: "mutation")
 
   deleteTransportDriver (
-    name: String!
+    id: String!
   ): Boolean @priviledge(category: "transport", priviledge: "mutation")
   
   deleteTransportDrivers (
-    names: [String]!
+    ids: [String]!
   ): Boolean @priviledge(category: "transport", priviledge: "mutation")
 
   updateMultipleTransportDriver (

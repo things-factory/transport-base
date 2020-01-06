@@ -1,13 +1,16 @@
-import { getRepository, In } from 'typeorm'
+import { EntityManager, getRepository, Repository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
 
-export const deleteTransportVehicles = {
-  async deleteTransportVehicles(_: any, { names }, context: any) {
-    await getRepository(TransportVehicle).delete({
-      domain: context.state.domain,
-      name: In(names)
-    })
-
-    return true
+export const deleteTransportVehiclesResolver = {
+  async deleteTransportVehicles(_: any, { ids }) {
+    await deleteTransportVehicles(ids)
   }
+}
+
+export async function deleteTransportVehicles(ids: string[], trxMgr?: EntityManager) {
+  const repository: Repository<TransportVehicle> = trxMgr
+    ? trxMgr.getRepository(TransportVehicle)
+    : getRepository(TransportVehicle)
+  await repository.delete(ids)
+  return true
 }

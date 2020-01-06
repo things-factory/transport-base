@@ -1,6 +1,6 @@
 import { User } from '@things-factory/auth-base'
-import { Bizplace } from '@things-factory/biz-base'
 import { Domain } from '@things-factory/shell'
+import { Bizplace } from '@things-factory/biz-base'
 import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity('transport_vehicles')
@@ -13,14 +13,10 @@ export class TransportVehicle {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @ManyToOne(type => Domain, {
-    nullable: false
-  })
+  @ManyToOne(type => Domain)
   domain: Domain
 
-  @ManyToOne(type => Bizplace, {
-    nullable: false
-  })
+  @ManyToOne(type => Bizplace)
   bizplace: Bizplace
 
   @Column()

@@ -10,7 +10,7 @@ export const Mutation = `
   ): TransportVehicle @priviledge(category: "transport", priviledge: "mutation" )
 
   updateTransportVehicle (
-    name: String!
+    id: String!
     patch: TransportVehiclePatch!
   ): [TransportVehicle] @priviledge(category: "transport", priviledge: "mutation" )
 
@@ -19,11 +19,11 @@ export const Mutation = `
   ): [TransportVehicle] @priviledge(category: "transport", priviledge: "mutation" )
 
   deleteTransportVehicle (
-    name: String!
+    id: String!
   ): Boolean @priviledge(category: "transport", priviledge: "mutation" )
 
   deleteTransportVehicles (
-    names: [String]!
+    ids: [String]!
   ): Boolean @priviledge(category: "transport", priviledge: "mutation" )
 `
 

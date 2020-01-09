@@ -10,7 +10,7 @@ export const Mutation = `
   ): TransportVehicle @priviledge(category: "transport", priviledge: "mutation" )
 
   updateTransportVehicle (
-    id: String!
+    name: String!
     patch: TransportVehiclePatch!
   ): [TransportVehicle] @priviledge(category: "transport", priviledge: "mutation" )
 

@@ -4,27 +4,27 @@ import { EntityManager, getRepository, Repository } from 'typeorm'
 import { TransportVehicle } from '../../../entities'
 
 export const updateTransportVehicleResolver = {
-  async updateTransportVehicle(_: any, { name, patch }, context: any) {
-    return await updateTransportVehicle(name, patch, context.state.domain, context.state.user)
+  async updateTransportVehicle(_: any, { id, patch }, context: any) {
+    return await updateTransportVehicle(id, patch, context.state.domain, context.state.user)
   }
 }
 
 export async function updateTransportVehicle(
-  name: string,
+  id: string,
   patch: TransportVehicle,
-  user: User,
   domain: Domain,
+  user: User,
   trxMgr?: EntityManager
 ) {
   const repository: Repository<TransportVehicle> = trxMgr
     ? trxMgr.getRepository(TransportVehicle)
     : getRepository(TransportVehicle)
-  const transportVehicle = await repository.findOne({
-    where: { domain, name }
+  const transportDriver = await repository.findOne({
+    where: { domain, id }
   })
 
   return await repository.save({
-    ...transportVehicle,
+    ...transportDriver,
     ...patch,
     updater: user
   })

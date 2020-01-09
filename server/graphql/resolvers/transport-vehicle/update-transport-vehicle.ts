@@ -25,6 +25,7 @@ export async function updateTransportVehicle(
   return await repository.save({
     ...transportVehicle,
     ...patch,
+    regNumber: patch.name,
     updater: user
   })
 }

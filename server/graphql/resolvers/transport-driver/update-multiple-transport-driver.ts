@@ -21,7 +21,7 @@ export const updateMultipleTransportDriver = {
       if (_updateRecords.length > 0) {
         for (let i = 0; i < _updateRecords.length; i++) {
           const patch: TransportDriver = _updateRecords[i]
-          const result = await updateTransportDriver(patch.id, patch, context.state.user)
+          const result = await updateTransportDriver(patch.id, patch, context.state.domain, context.state.user, trxMgr)
           results.push({ ...result, cuFlag: 'M' })
         }
       }

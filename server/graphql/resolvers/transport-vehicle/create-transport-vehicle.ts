@@ -20,6 +20,7 @@ export async function createTransportVehicle(
     : getRepository(TransportVehicle)
   return await repository.save({
     ...transportVehicle,
+    regNumber: transportVehicle.name,
     domain,
     creator: user,
     updater: user

@@ -53,6 +53,9 @@ export class ShipmentProvider {
   @Column()
   deliveryOption: string
 
+  @Column()
+  account: string
+
   @CreateDateColumn()
   createdAt: Date
 

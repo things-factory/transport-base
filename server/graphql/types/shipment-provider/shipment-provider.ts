@@ -13,6 +13,7 @@ export const ShipmentProvider = gql`
     cod: Boolean
     trackingUrl: String
     deliveryOption: String
+    account: String
     updater: User
     creator: User
     updatedAt: String
